@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: ./bot_node/Dockerfile
+    container_name: discord-bot
+    env_file:
+      - .env
+    command: node index.js
+    links:
+      - edt
+  edt:
+    build:
+      context: .
+      dockerfile: edt_api/Dockerfile
+    container_name: edt-server
+    ports:
+      - "9999:80"
+    env_file:
+      - .env
