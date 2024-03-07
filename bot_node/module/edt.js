@@ -32,6 +32,9 @@ module.exports = {
 
             const channel = interaction.channels.cache.get(data.channel);
 
+            if(!result.messageId && data.message)
+                result.messageId = data.message;
+
             if(result.messageId) {
                 const message = await channel.messages.fetch(result.messageId);
 
